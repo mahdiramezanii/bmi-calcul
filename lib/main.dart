@@ -10,27 +10,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: "dana"),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              " تو چنده؟ BMI",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+          ),
           body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0,500,0,0),
-              child: Column(
-                children: [
-
-                  RightShape(with_shap: 200,),
-                  RightShape(with_shap: 110,),
-                  RightShape(with_shap: 30,),
-
-                  LeftShape(with_shap: 50,),
-                  SizedBox(height: 15,),
-                  LeftShape(with_shap: 200,),
-                  SizedBox(height: 15,),
-                  LeftShape(with_shap: 110,),
-                
-                  
-                ],
-              ),
+            child: Column(
+              children: [
+                Container(
+                  width: 300,
+                  child: TextField(
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "وزن",
+                      hintStyle: TextStyle(
+                      
+                        color: Colors.red.withOpacity(0.5),
+                        
+                      ),
+                    ),
+                    keyboardType: TextInputType.text,
+                  ),
+                ),
+              ],
             ),
           )),
     );
