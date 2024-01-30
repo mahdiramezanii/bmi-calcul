@@ -1,3 +1,5 @@
+import 'package:bmi_calcul/widget/backgroun_right_shpae.dart';
+import 'package:bmi_calcul/widget/background_left_shape.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,38 +17,18 @@ class MyApp extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0,500,0,0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomLeft: Radius.circular(20)
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-              
-                  Row(
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+
+                  RightShape(with_shap: 200,),
+                  RightShape(with_shap: 110,),
+                  RightShape(with_shap: 30,),
+
+                  LeftShape(with_shap: 50,),
+                  SizedBox(height: 15,),
+                  LeftShape(with_shap: 200,),
+                  SizedBox(height: 15,),
+                  LeftShape(with_shap: 110,),
+                
+                  
                 ],
               ),
             ),
