@@ -6,13 +6,27 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final wightController = TextEditingController();
+  final hightController = TextEditingController();
+
+  double resultBmi = 0.00;
+  String resultTxt = "";
+  double withGood=100;
+  double withBad=100;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: "dana"),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             centerTitle: true,
             title: Text(
@@ -29,6 +43,7 @@ class MyApp extends StatelessWidget {
                     Container(
                       width: 100,
                       child: TextField(
+                        controller: wightController,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.red,
@@ -42,12 +57,13 @@ class MyApp extends StatelessWidget {
                             color: Colors.red.withOpacity(0.5),
                           ),
                         ),
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                     Container(
                       width: 100,
                       child: TextField(
+                        controller: hightController,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.red,
@@ -55,20 +71,43 @@ class MyApp extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                         decoration: InputDecoration(
-                          border: InputBorder.none,
+                       border: InputBorder.none,
                           hintText: "قد",
                           hintStyle: TextStyle(
                             color: Colors.red.withOpacity(0.5),
                           ),
                         ),
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.number,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 50),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {
+                      final w = double.parse(wightController.text);
+                      final h = double.parse(hightController.text);
+
+                      resultBmi = w / (h * h);
+
+                      setState(() {
+                        if (resultBmi > 25) {
+                          resultTxt = "شما اضافه وزن دارید";
+                          withBad=200;
+                          withGood=100;
+                        } else if (resultBmi >= 18 && resultBmi <= 25) {
+                          resultTxt = "وزن شما نرمال است";
+                          withBad=100;
+                          withGood=200;
+                        } else {
+                          resultTxt = "وزن شما از حد نرمال کمتر است";
+                          withBad=200;
+                          withGood=200;
+                        }
+                      });
+                    });
+                  },
                   child: Text(
                     "! محاسبه کن",
                     textAlign: TextAlign.center,
@@ -77,26 +116,32 @@ class MyApp extends StatelessWidget {
                 ),
                 SizedBox(height: 60),
                 Text(
-                  "41.23",
+                  "${resultBmi.toStringAsFixed(3)}",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 50, fontWeight: FontWeight.w900),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "شما اضافه وزن دارید",
+                  "${resultTxt}",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w900,
                       color: Colors.red),
                 ),
+                
                 SizedBox(height: 60),
-                RightShape(with_shap: 200),
+                RightShape(with_shap: withBad),
                 SizedBox(height: 10),
-                LeftShape(with_shap: 120)
+                LeftShape(with_shap: withGood),
               ],
             ),
           )),
     );
+  }
+
+  double CalBmi(double h, double w) {
+    var result = h / (w * w);
+    return result;
   }
 }
