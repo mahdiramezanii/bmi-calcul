@@ -18,17 +18,20 @@ class LeftShape extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        
         Container(
           width: with_shap,
-          height: 30,
+          height: 40,
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
+             
               bottomRight: Radius.circular(20),
             ),
           ),
-        )
+        ),
+        SizedBox(width: 5,),
+        Text("شاخص مثبت",style: TextStyle(color: Colors.green),),
       ],
     );
   }

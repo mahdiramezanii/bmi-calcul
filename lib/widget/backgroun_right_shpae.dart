@@ -11,15 +11,18 @@ class RightShape extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        Text("شاخص منفی",style: TextStyle(color: Colors.red),),
+        SizedBox(width: 5,),
         Container(
           width: with_shap,
-          height: 30,
+          height: 40,
           decoration: BoxDecoration(
             color: Colors.red,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
+                topLeft: Radius.circular(20),),
           ),
-        )
+        ),
+        
       ],
     );
   }
